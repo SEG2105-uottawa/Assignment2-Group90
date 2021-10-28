@@ -48,12 +48,8 @@ public class EchoServer extends AbstractServer
   public void handleMessageFromClient
     (Object msg, ConnectionToClient client)
   {
-	//**** changed for E49
-	if (msg.equals("") || msg.equals(null)) {}
-	else {
-	  System.out.println("Message received: " + msg + " (from " + client + ")");
-	  this.sendToAllClients(msg); 
-	}
+    System.out.println("Message received: " + msg + " from " + client);
+    this.sendToAllClients(msg);
   }
     
   /**
@@ -72,58 +68,8 @@ public class EchoServer extends AbstractServer
    */
   protected void serverStopped()
   {
-	//****changed for E49
     System.out.println
       ("Server has stopped listening for connections.");
-    this.sendToAllClients("The server has closed");
-  }
-  
-  //**** made for E50
-  public void handleMessageFromServerConsole(String message) {
-      if (message.charAt(0)) {
-          String[] split = message.split(" ");
-          switch (split[0]) {
-              case "#quit":
-                  try {
-                      this.close(); } 
-                  catch (IOException e) {
-                      System.exit(1); }
-                  System.exit(0);
-                  break;
-              case "#stop":
-                  this.stopListening();
-                  break;
-              case "#close":
-                  try {
-                      this.close(); } 
-                  catch (IOException e) {}
-                  break;
-              case "#setport":
-                  if (!this.isListening() && this.getNumberOfClients() < 1) {
-                      super.setPort(Integer.parseInt(split[1]));
-                      System.out.println("Port was set to " + Integer.parseInt(split[1]));} 
-                  else {
-                      System.out.println("Server is connected.");}
-                  break;
-              case "#start":
-                  if (!this.isListening()) {
-                      try {
-                          this.listen(); } 
-                      catch (IOException e) {}
-                  } 
-                  else {
-                      System.out.println("Already started and listening for clients"); }
-                  break;
-              case "#getport":
-                  System.out.println("Current port is " + this.getPort());
-                  break;
-              default:
-                  System.out.println("Invalid command: '" + command+ "'");
-                  break;
-          }
-      } 
-      else {
-          this.sendToAllClients("SERVER> "+message); }
   }
   
   //Class methods ***************************************************
