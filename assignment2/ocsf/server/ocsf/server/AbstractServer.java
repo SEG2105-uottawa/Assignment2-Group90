@@ -409,7 +409,7 @@ public abstract class AbstractServer implements Runnable
   /**
    * Hook method called when the server stops accepting
    * connections.  The default implementation
-   * does nothing. This method may be overriden by subclasses.
+   * does nothing. This method may be overridden by subclasses.
    */
   protected void serverStopped() {}
 

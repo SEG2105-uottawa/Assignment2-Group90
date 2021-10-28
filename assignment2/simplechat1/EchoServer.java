@@ -83,6 +83,21 @@ public class EchoServer extends AbstractServer
    * @param args[0] The port number to listen on.  Defaults to 5555 
    *          if no argument is entered.
    */
+  
+  //Edited for E49 part c********************************************
+  @Override
+  protected void clientConnected(ConnectionToClient client)
+  {
+	  System.out.println("Client has connected to server with port " + getPort());
+	  
+  }
+  
+  @Override
+  protected void clientDisconnected(ConnectionToClient client)
+  {
+	  System.out.println("Client has disconnected");
+  }
+  
   public static void main(String[] args) 
   {
     int port = 0; //Port to listen on
