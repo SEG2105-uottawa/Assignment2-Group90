@@ -70,9 +70,10 @@ public class ClientConsole implements ChatIF
     {
       BufferedReader fromConsole = 
         new BufferedReader(new InputStreamReader(System.in));
-      String message;
+      String message = "";
 
-      while (true) 
+      //*********changed for E49
+      while (client.isConnected()) 
       {
         message = fromConsole.readLine();
         client.handleMessageFromClientUI(message);
