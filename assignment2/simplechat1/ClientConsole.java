@@ -70,16 +70,15 @@ public class ClientConsole implements ChatIF
     {
       BufferedReader fromConsole = 
         new BufferedReader(new InputStreamReader(System.in));
-      String message = "";
-      
-      //**** changed for E49
-      while (client.isConnected())
+      String message;
+
+      while (true) 
       {
-    	message = fromConsole.readLine();
+        message = fromConsole.readLine();
         client.handleMessageFromClientUI(message);
       }
     } 
-    catch (Exception ex)
+    catch (Exception ex) 
     {
       System.out.println
         ("Unexpected error while reading from console!");
@@ -105,7 +104,7 @@ public class ClientConsole implements ChatIF
    *
    * @param args[0] The host to connect to.
    */
-  public static void main(String[] args)
+  public static void main(String[] args) 
   {
     String host = "";
     int port = 0;  //The port number
@@ -119,7 +118,6 @@ public class ClientConsole implements ChatIF
       host = "localhost";
     }
     ClientConsole chat= new ClientConsole(host, DEFAULT_PORT);
-    
     chat.accept();  //Wait for console data
   }
 }

@@ -48,18 +48,8 @@ public class EchoServer extends AbstractServer
   public void handleMessageFromClient
     (Object msg, ConnectionToClient client)
   {
-	  
-	      BufferedReader fromConsole = new BufferedReader(new InputStreamReader(System.in));
-	      String command = fromConsole.readLine();
-	      System.out.println(command);
-	  
-	
-	//**** changed for E49
-	if (msg.equals("") || msg.equals(null)) {}
-	else {
-	  System.out.println("Message received: " + msg + " (from " + client + ")");
-	  this.sendToAllClients(msg); 
-	}
+    System.out.println("Message received: " + msg + " from " + client);
+    this.sendToAllClients(msg);
   }
     
   /**
@@ -108,7 +98,6 @@ public class EchoServer extends AbstractServer
     
     try 
     {
-      System.out.println("type SHUTDOWN to stop the server");
       sv.listen(); //Start listening for connections
     } 
     catch (Exception ex) 
