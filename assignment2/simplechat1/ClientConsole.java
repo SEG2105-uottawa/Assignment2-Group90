@@ -109,7 +109,19 @@ public class ClientConsole implements ChatIF
   {
     String host = "";
     int port = 0;  //The port number
-
+    
+    //**** made for E49
+    try {
+    	System.out.print("Enter a port number: ");
+    	BufferedReader fromConsole = new BufferedReader(new InputStreamReader(System.in));
+    	port = Integer.parseInt(fromConsole.readLine());
+    	System.out.println("Now using port: "+port);
+    }
+    catch (Exception e) {
+        port = DEFAULT_PORT;
+        System.out.println("Bad inut, using default port: "+ DEFAULT_PORT);
+    }
+    
     try
     {
       host = args[0];
@@ -118,6 +130,7 @@ public class ClientConsole implements ChatIF
     {
       host = "localhost";
     }
+    
     ClientConsole chat= new ClientConsole(host, DEFAULT_PORT);
     
     chat.accept();  //Wait for console data

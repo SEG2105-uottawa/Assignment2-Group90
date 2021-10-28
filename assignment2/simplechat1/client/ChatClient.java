@@ -66,16 +66,69 @@ public class ChatClient extends AbstractClient
    */
   public void handleMessageFromClientUI(String message)
   {
-    try
-    {
-      sendToServer(message);
+	//**** changed for E50
+    if (message.charAt(0) == '#') {
+    	String command = message;
+    	String[] split = message.split(" ");
+    	switch (split[0]) {
+        case "#exit":
+            quit();
+            break;
+        case "#logoff":
+            try {
+                closeConnection(); }
+            catch (IOException e) {
+                System.out.println("Error closing connection"); }
+            break;
+        case "#sethost":
+            if (this.isConnected()) {
+                System.out.println("Already connected"); }
+            else {
+                this.setHost(split[1]); }
+            break;
+        case "#setport":
+            if (this.isConnected()) {
+                System.out.println("Already connected"); }
+            else {
+                this.setPort(Integer.parseInt(split[1])); }
+            break;
+        case "#login":
+            if (this.isConnected()) {
+                System.out.println("Already connected"); } 
+            else {
+                try {
+                    this.openConnection(); } 
+                catch (IOException e) {
+                    System.out.println("Error server not open"); }
+    		}
+            break;
+        case "#gethost":
+            System.out.println("The host is " + this.getHost());
+            break;
+        case "#getport":
+            System.out.println("The Port is " + this.getPort());
+            break;
+        default:
+            System.out.println("Invalid command: '" + command+ "'");
+            break;
+    	}
     }
-    catch(IOException e)
-    {
-      clientUI.display
-        ("Could not send message to server.  Terminating client.");
+	else{
+	  try {
+		  sendToServer(message);}
+	  catch(IOException e){
+		  clientUI.display ("Could not send message to server.  Terminating client.");
+		  quit(); }
+  	}
+  }
+  
+  //**** made for E49
+  public void connectionClosed() {
+      System.out.println("Connection to server closed"); }
+  
+  public void connectionException(Exception exception) {
+      System.out.println("The server has stopped listening for connections");
       quit();
-    }
   }
   
   /**
