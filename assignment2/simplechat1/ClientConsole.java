@@ -119,7 +119,7 @@ public class ClientConsole implements ChatIF
     }
     catch (Exception e) {
         port = DEFAULT_PORT;
-        System.out.println("Bad inut, using default port: "+ DEFAULT_PORT);
+        System.out.println("Bad input, using default port: "+ DEFAULT_PORT);
     }
     
     try
