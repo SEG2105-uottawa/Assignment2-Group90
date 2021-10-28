@@ -75,8 +75,10 @@ public class ClientConsole implements ChatIF
       //*********changed for E49
       while (client.isConnected()) 
       {
-        message = fromConsole.readLine();
-        client.handleMessageFromClientUI(message);
+        
+    	  
+    	  message = fromConsole.readLine();
+    	  client.handleMessageFromClientUI(message);
       }
     } 
     catch (Exception ex) 
