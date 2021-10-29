@@ -122,6 +122,8 @@ public class EchoServer extends AbstractServer
     {
       port = DEFAULT_PORT; //Set port to 5555
     }
+    //modified for E49b
+    //Server port can be modified from the console, if proper input, client can only connect to this port and not default
     try {
     	System.out.print("Enter a port number: ");
     	BufferedReader fromConsole = new BufferedReader(new InputStreamReader(System.in));
