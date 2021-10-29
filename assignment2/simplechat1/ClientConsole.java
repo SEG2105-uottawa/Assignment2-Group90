@@ -113,6 +113,8 @@ public class ClientConsole implements ChatIF
     int port = 0;  //The port number
     
     //**** made for E49
+    //User can modify the port number from console but can only connect to active server 
+    //input port must match the port for the server listening for connections
     try {
     	System.out.print("Enter a port number: ");
     	BufferedReader fromConsole = new BufferedReader(new InputStreamReader(System.in));
