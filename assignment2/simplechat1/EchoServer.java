@@ -115,12 +115,23 @@ public class EchoServer extends AbstractServer
     try
     {
       port = Integer.parseInt(args[0]); //Get port from command line
+      System.out.println(port);
+
     }
     catch(Throwable t)
     {
       port = DEFAULT_PORT; //Set port to 5555
     }
-	
+    try {
+    	System.out.print("Enter a port number: ");
+    	BufferedReader fromConsole = new BufferedReader(new InputStreamReader(System.in));
+    	port = Integer.parseInt(fromConsole.readLine());
+    	System.out.println("Now using port: "+port);
+    }
+    catch (Exception e) {
+        port = DEFAULT_PORT;
+        System.out.println("Bad input, using default port: "+ DEFAULT_PORT);
+    }
     EchoServer sv = new EchoServer(port);
     
     try 
