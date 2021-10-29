@@ -58,7 +58,9 @@ public class EchoServer extends AbstractServer
    * This method overrides the one in the superclass.  Called
    * when the server starts listening for connections.
    */
-  //*****Edited for E49c 
+  
+  //Edited for E49c*************************************************
+  
   protected void serverStarted()
   {
     System.out.println
@@ -92,13 +94,13 @@ public class EchoServer extends AbstractServer
 	  System.out.println("Client has connected to Server with port " + getPort());
 	  
   }
-  
+  //Edited for E49 part c********************************************
   @Override
   protected void clientDisconnected(ConnectionToClient client)
   {
 	  System.out.println("Client has disconnected from Server with port " + getPort());
   }
-  
+  //Edited for E49 part c********************************************
   @Override
   protected void clientException(ConnectionToClient client, Throwable exception)
   {
