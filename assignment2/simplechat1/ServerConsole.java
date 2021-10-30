@@ -20,7 +20,7 @@ public class ServerConsole implements ChatIF{
 
 	@Override
 	public void display(String message) {
-		String msg = "SERVERMSG>"+message;
+		String msg = "SERVER MSG>"+message;
 		System.out.println(msg);
 		this.server.sendToAllClients(msg);
 		
