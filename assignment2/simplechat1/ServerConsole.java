@@ -116,10 +116,6 @@ public class ServerConsole implements ChatIF{
 		
 		
 	}
-	public void quit()
-	{
-		
-	}
 	
 	public void run()
 	{
