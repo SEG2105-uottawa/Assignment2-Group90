@@ -12,10 +12,11 @@ package common;
  * @author Dr Timothy C. Lethbridge
  * @version July 2000
  */
-public interface ChatIF 
+//edited by adding Runnable interface as an extension to this class
+public interface ChatIF extends Runnable
 {
   /**
-   * Method that when overriden is used to display objects onto
+   * Method that when overridden is used to display objects onto
    * a UI.
    */
   public abstract void display(String message);

@@ -138,5 +138,13 @@ public class ClientConsole implements ChatIF
     ClientConsole chat= new ClientConsole(host, port);
     chat.accept();  //Wait for console data
   }
+
+
+@Override
+public void run() {
+	// TODO Auto-generated method stub
+	
+}
+
 }
 //End of ConsoleChat class

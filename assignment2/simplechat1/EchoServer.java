@@ -135,7 +135,9 @@ public class EchoServer extends AbstractServer
         System.out.println("Bad input, using default port: "+ DEFAULT_PORT);
     }
     EchoServer sv = new EchoServer(port);
-    
+    //before listening for connections, must create a Thread for listening for input on console
+    Thread serverConsoleThread = new Thread(new ServerConsole(port)); 
+    serverConsoleThread.start();
     try 
     {
       sv.listen(); //Start listening for connections
@@ -144,6 +146,8 @@ public class EchoServer extends AbstractServer
     {
       System.out.println("ERROR - Could not listen for clients!");
     }
+
+ 
   }
 }
 //End of EchoServer class
