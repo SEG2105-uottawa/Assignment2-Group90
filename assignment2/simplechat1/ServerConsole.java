@@ -9,20 +9,20 @@ public class ServerConsole implements ChatIF{
 
 	String message;
 
-	private int port;
+	int port;
 	
-	public ServerConsole(int port)
+	public ServerConsole(int port, EchoServer server)
 	{
 		//super(port);
 		this.port = port;	
+		this.server = server;
 	}
 
 	@Override
 	public void display(String message) {
 		String msg = "SERVERMSG>"+message;
 		System.out.println(msg);
-		server = new EchoServer(port);
-		server.sendToAllClients(msg);
+		this.server.sendToAllClients(msg);
 		
 	}
 	

@@ -136,7 +136,7 @@ public class EchoServer extends AbstractServer
     }
     EchoServer sv = new EchoServer(port);
     //before listening for connections, must create a Thread for listening for input on console
-    Thread serverConsoleThread = new Thread(new ServerConsole(port)); 
+    Thread serverConsoleThread = new Thread(new ServerConsole(port, sv)); 
     serverConsoleThread.start();
     try 
     {
