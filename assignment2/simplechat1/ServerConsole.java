@@ -1,12 +1,15 @@
 //this class was created for question 50
 import java.io.*;
 
+import client.ChatClient;
 import common.ChatIF;
+import ocsf.client.AbstractClient;
 
 
 public class ServerConsole implements ChatIF{
 	//instance variables
 	EchoServer server;
+	Thread client;
 
 	String message;
 
@@ -27,11 +30,14 @@ public class ServerConsole implements ChatIF{
 			
 			switch (split[0])
 			{
+			//quit command: if quit is typed then the EchoServer server terminates
 			case "#quit":
-				//quit gracefully
-				
+				System.out.println("Terminating Server");
+				System.exit(0);
+				break;	
+			//stop command: only stop listening for new clients, but current clients remain connected
 			case "#stop":
-				//only stop listening for new clients, but current clients remain connected
+				
 				if (server.isListening())
 				{
 					server.stopListening();
@@ -42,12 +48,12 @@ public class ServerConsole implements ChatIF{
 					System.out.println("Server is not currently listening for connections");
 				}
 				break;
+			//close command: stop listening for connections first, then disconnect clients, then close the server
 			case "#close":
-				//stop listening for new connections and disconnect all clients
 				if (server.isListening())
 				{
 					server.stopListening();
-					System.out.println("Server stopped listening for connections. Now disconnecting clients");
+					System.out.println("Server has stopped listening for connections. Now disconnecting clients");
 					try {
 						server.close();
 					} catch (IOException e) {
@@ -56,8 +62,9 @@ public class ServerConsole implements ChatIF{
 					}
 				}
 				break;
+			//setport command: if server is currently set to a port and listening, a port can be set; #setport XXXX,
+				//where XXXX represents integers for the port number
 			case "#setport":
-				//set a port only if server is currently running
 				if (server.isListening())
 				{
 					System.out.println("The Server is already listening for connections");
@@ -67,6 +74,7 @@ public class ServerConsole implements ChatIF{
 					this.server.setPort(Integer.parseInt(split[1]));
 				}
 				break;
+			//start command: if server isn't listening for connections, command makes it start listening
 			case "#start":
 				if (server.isListening())
 				{
@@ -82,6 +90,7 @@ public class ServerConsole implements ChatIF{
 					}
 				}
 				break;
+			//getport command: displays the port number to the end-user of the server 
 			case "#getport":
 				if (server.isListening())
 				{
@@ -92,12 +101,23 @@ public class ServerConsole implements ChatIF{
 					System.out.println("The Server is currently not listening for connections");
 				}
 				break;
+			default:
+				System.out.println("Invalid command: '" + command+ "'");
+		        break;
 			}
 			
 		}
-		String msg = "SERVER MSG>"+message;
-		System.out.println(msg);
-		this.server.sendToAllClients(msg);
+		else
+		{
+			String msg = "SERVER MSG>"+message;
+			System.out.println(msg);
+			this.server.sendToAllClients(msg);
+		}
+		
+		
+	}
+	public void quit()
+	{
 		
 	}
 	
