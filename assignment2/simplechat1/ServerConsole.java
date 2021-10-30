@@ -71,7 +71,7 @@ public class ServerConsole implements ChatIF{
 				}
 				else
 				{
-					this.server.setPort(Integer.parseInt(split[1]));
+					server.setPort(Integer.parseInt(split[1]));
 				}
 				break;
 			//start command: if server isn't listening for connections, command makes it start listening
@@ -111,7 +111,7 @@ public class ServerConsole implements ChatIF{
 		{
 			String msg = "SERVER MSG>"+message;
 			System.out.println(msg);
-			this.server.sendToAllClients(msg);
+			server.sendToAllClients(msg);
 		}
 		
 		
