@@ -3,6 +3,8 @@
 // license found at www.lloseng.com 
 
 import java.io.*;
+import java.net.InetAddress;
+
 import ocsf.server.*;
 
 /**
